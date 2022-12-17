@@ -13,7 +13,7 @@ The goal of `fediverser` is to offer a client for the Fediverse that R
 users can customise: decide what is in front of them and why, not
 necessarily the most recent posts.
 
-At this stage, this is just a prototype. Install and `run_app()` to see
+At this stage, this is just a prototype. Install and `fedi_app()` to see
 the little that works (show contents of a hashtag from an instance, but
 nothing more).
 
@@ -41,7 +41,7 @@ remotes::install_github("giocomai/fediverser")
 Just run:
 
 ``` r
-run_app()
+fedi_app()
 ```
 
 And you may get an idea of where this is going, obviously with more

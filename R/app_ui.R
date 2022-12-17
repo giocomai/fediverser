@@ -6,41 +6,57 @@
 #' @noRd
 app_ui <- function(request) {
   tagList(
-    # Leave this function for adding external resources
     golem_add_external_resources(),
-    # Your application UI logic
     fluidPage(
+      tags$head(tags$script(HTML(' $(document).ready(function() { const observer = new IntersectionObserver(function(entries) { if (entries[0].intersectionRatio > 0) {
+             Shiny.setInputValue("list_end_reached", true, { priority: "event" });
+          }
+        });
+
+        observer.observe(document.querySelector("#end"));
+      })
+    '))),
       shinyjs::useShinyjs(),
       theme = bslib::bs_theme(
         version = 4,
         bootswatch = "darkly"
       ),
       shiny::fluidRow(
+
         shiny::column(
-          width = 4,
+          width = 2,
+          offset = 4,
           shiny::textInput(
             inputId = "instance_input",
             label = "Instance",
             value = "fosstodon.org"
-          ),
+          )
+        ),
+        shiny::column(
+          width = 2,
           shiny::textInput(
             inputId = "hashtag_input",
             label = "Hashtag",
             value = "rstats"
-          ),
+          )
+        ),
+        shiny::column(
+          width = 2,
           shiny::actionButton(
             inputId = "update_button",
             label = "Update",
             icon = shiny::icon(name = "sync"),
-            style = "margin-left:10px;margin-right:10px;"
+            style = "margin-left:10px;margin-right:10px;margin-top:30px;"
           )
         ),
         style = "border: 2px solid #375a7f;padding:10px;margin:10px;border-radius:25px;width:100%;"
       ),
       shiny::column(
         width = 4,
-        shiny::uiOutput(outputId = "hashtag_cards_ui")
-      )
+        offset = 4,
+        shiny::uiOutput(outputId = "hashtag_cards_ui"),
+        div(id = "end")
+      ),
     )
   )
 }
