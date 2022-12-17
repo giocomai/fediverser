@@ -13,9 +13,9 @@ The goal of `fediverser` is to offer a client for the Fediverse that R
 users can customise: decide what is in front of them and why, not
 necessarily the most recent posts.
 
-At this stage, this is just a prototype. Install and `fedi_app()` to see
-the little that works (show contents of a hashtag from an instance, but
-nothing more).
+At this stage, this is just a prototype. Install and run `fedi_app()` to
+see the little that works (show contents of a hashtag from an instance
+and get older posts with infinite scrolling but nothing more).
 
 It is built on modules, in a way that should eventually enable full
 functionalities (e.g. reply, favorite, etc.) from the app.
@@ -41,6 +41,8 @@ remotes::install_github("giocomai/fediverser")
 Just run:
 
 ``` r
+library("fediverser")
+options(shiny.launch.browser = .rs.invokeShinyWindowExternal) 
 fedi_app()
 ```
 
